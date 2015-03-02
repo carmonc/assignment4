@@ -1,12 +1,13 @@
 import sys
+import random
 
 program_name = sys.argv[0]
-arguments = sys.argv[1:]
-count = len(arguments)
+visitorder = sys.argv[1:]
+count = len(visitorder)
 
 print count
-for argue in arguments:
-    print argue
+for visit in visitorder:
+    print visit
 distances = \
      [[  0,5472,5092,5393,5416,4584,4905,3852,4477,5261,4843,5930], \
      [5472,   0,1315, 927,1505, 944,1157,1945,7225,1127, 687, 459], \
@@ -33,14 +34,22 @@ midList     = []
 rearList    = []
 orderedList = []      
 
-p1 = randint(0,11)
+p1 = 4 #random.randint(0,11)
 while True:
-    p2 = randint(0,11)
+    p2 = 7 #  random.randint(0,11)
     if p2 != p1: 
         break
 
 #Reverse the list between p1 and p2 (eg: 1,2,3,6,5,4,7,8,9)
-frontList = [:p1]
-rearList = [p2:]
-midList =     
+frontList = visitorder[:p1]
+rearList = visitorder[p2:]
+midList = visitorder[p1:p2]
+x = []
+
+print midList
+
+x = midList.reverse()
+
+print x
+
 
