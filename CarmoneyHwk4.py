@@ -49,20 +49,26 @@ class TspProblem(SearchProblem):
                 break
 
         #Reverse the list between p1 and p2 (eg: 1,2,3,6,5,4,7,8,9)
+
+        #FIXME! Re-order the loop
+        # action = ('Description', newlist?)
                 
 
         return action
 
-    #Check if a state is valid.               
+    # Check if a state is valid.               
     # work out what the improper states are and put them here and a return value
     def _is_valid(self, s):
+        #FIXME!
         return ((0 <= s[0] <= self.jug1) and (0 <= s[1] <= self.jug2))
 
     #Result of applying an action to a state.
     def result(self, s, a):
+        #FIXME!
         return a[1]
 
     def value(self, s, v):
+        #FIXME!
         return _tour_length(self,s)
 
     def generate_random_restart(self, s):
@@ -72,6 +78,7 @@ class TspProblem(SearchProblem):
         return len(self.tour)
 
     def is_goal(self, state):
+        #FIXME!
         return state == (2, 0)
 
     def heuristic(self, state):
@@ -81,6 +88,7 @@ if len(sys.argv) != 3:
     print('This program takes arguments - try using some next time!')
 else:
     starttime = time.time()
+    #FIXME! Init params....
     problem = TspProblem(int(sys.argv[1]), int(sys.argv[2]))
     result = astar(problem)
     endtime = time.time()
