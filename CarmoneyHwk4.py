@@ -17,6 +17,7 @@ class TspProblem(SearchProblem):
 
     def __init__(self,j1,j2):
         super(TspProblem, self).__init__(initial_state=(0,4,3,2,1,8,7,6,5,11,10,9,0))
+           #   00   01   02   03   04   05   06   07   08   09   10   11
         self.distances = \
             [[  0,5472,5092,5393,5416,4584,4905,3852,4477,5261,4843,5930], \
             [5472,   0,1315, 927,1505, 944,1157,1945,7225,1127, 687, 459], \
@@ -76,7 +77,7 @@ class TspProblem(SearchProblem):
 
     #Result of applying an action to a state.
     def result(self, s, a):
-        return a[1]
+        return a[0]
 
     def value(self, s, v):
         #FIXME!
