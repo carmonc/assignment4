@@ -62,3 +62,11 @@ print random.randint(0,11)
 print random.randint(0,11)
 print random.randint(0,11)
 print random.randint(0,11)
+
+print '3rd row'
+print distances[3]
+
+print 'visitorder = '
+print visitorder
+print 'count = ' + str(count)
+print visitorder[count-1]
