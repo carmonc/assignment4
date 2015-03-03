@@ -22,12 +22,12 @@ distances = \
      [4843, 687,1489, 819,1295, 263,1228,1605,6977,1392,   0,1125], \
      [5930, 459,1542,1096,1636,1387,1458,2356,7551,1319,1125,   0]]
 
-cols=len(distances[0])
-rows=len(distances)
+#cols=len(distances[0])
+#rows=len(distances)
 
-print '---------'
-print 'cols = ' + str(cols)
-print 'rows = ' + str(rows)
+#print '---------'
+#print 'cols = ' + str(cols)
+#print 'rows = ' + str(rows)
 
 frontList   = []
 midList     = []
@@ -48,8 +48,17 @@ x = []
 
 print midList
 
-x = midList.reverse()
+print frontList
+orderedList = frontList
+x = reversed(midList)
+for x in reversed(midList):
+    orderedList.append(x)
+orderedList.extend(rearList)
+print orderedList
 
-print x
-
-
+print 'randomness'
+print random.randint(0,11)
+print random.randint(0,11)
+print random.randint(0,11)
+print random.randint(0,11)
+print random.randint(0,11)

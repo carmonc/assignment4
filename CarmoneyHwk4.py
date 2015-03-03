@@ -41,18 +41,30 @@ class TspProblem(SearchProblem):
         # and then cross connect the end points
         # See slides 40 - 45
         action = []
+        frontList = []
+        midList = []
+        rearList = []
 
-        p1 = randint(0,11)
+        # Choose a random index
         while True:
-            p2 = randint(0,11)
-            if p2 != p1:
+            _x = randint(1,self.num_cities-2)
+            _y = randint(2,self.num_cities-1)
+            if _x < _y:
                 break
 
-        #Reverse the list between p1 and p2 (eg: 1,2,3,6,5,4,7,8,9)
+        #Reverse the list between _x and _y (eg: 1,2,3,6,5,4,7,8,9)
 
-        #FIXME! Re-order the loop
-        # action = ('Description', newlist?)
-                
+        frontList = visitorder[:_x]
+        rearList = visitorder[_y:]
+        midList = visitorder[_x:_y]
+        tmp = []
+
+        orderedList = frontList
+        tmp = reversed(midList)
+        for tmp in reversed(midList):
+            orderedList.append(tmp)
+        orderedList.extend(rearList)
+        action = ('2-change at ' + str(_x) + ' and ' + str(_y), orderedList)
 
         return action
 
@@ -64,7 +76,6 @@ class TspProblem(SearchProblem):
 
     #Result of applying an action to a state.
     def result(self, s, a):
-        #FIXME!
         return a[1]
 
     def value(self, s, v):
