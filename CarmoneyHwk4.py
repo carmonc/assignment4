@@ -34,7 +34,8 @@ class TspProblem(SearchProblem):
         self.num_cities=len(self.distances)
         self.rows=len(self.distances[0])
         self.tour = []
-
+        self.route = sys.argv[1:]
+        self.count = len(route)
 
     def actions(self, s):
         # I will explain the scheme, called 2-change, with an example
@@ -73,7 +74,8 @@ class TspProblem(SearchProblem):
     # work out what the improper states are and put them here and a return value
     def _is_valid(self, s):
         #FIXME!
-        return ((0 <= s[0] <= self.jug1) and (0 <= s[1] <= self.jug2))
+        #return ((0 <= s[0] <= self.jug1) and (0 <= s[1] <= self.jug2))
+        return (self.route[0] == self.route[count-1])
 
     #Result of applying an action to a state.
     def result(self, s, a):
