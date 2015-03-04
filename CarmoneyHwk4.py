@@ -90,7 +90,7 @@ class TspProblem(SearchProblem):
         
         return ( endpoints_same and    ) 
 
-    # FIXME!
+    # FIXME! What's going on here?
     def result(self, s, a):
         '''
         Result of applying an action to a state.
@@ -106,7 +106,7 @@ class TspProblem(SearchProblem):
 
     def generate_random_state(self):
         neworder = []
-        neworder.append(self.route.pop(0))i
+        neworder.append(self.route.pop(0))
         last = self.route.pop(len(self.route)-1)
         
         for i in range(0,len(self.route)):
@@ -120,7 +120,12 @@ class TspProblem(SearchProblem):
         #iterate over tour, 
         #get indices (row,col) to get length, add them all, return
         #HINT: Do not use a foreach loop.
-        return self.
+
+        #FIXME! Test this!!
+        _length = 0 
+        for item in self.route-1:
+            _length = self.distances[item][item+1]
+        return _length
 
     #FIXME!
     def is_goal(self, state):
