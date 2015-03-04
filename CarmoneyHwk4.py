@@ -29,9 +29,16 @@ class TspProblem(SearchProblem):
         self.tour = []
         self.route = initial
         self.count = len(route)
+        self._max = calc_max()
 
     def calc_max(self):
+        max = 0
         #Iterate over all elements, create a sum (which is MAX).
+        for row in range(0, self.count-1):
+            for col in range(0,self.count-1):
+                max=max + int(distances[row][col])
+        return max
+
 
     def actions(self, s):
         # I will explain the scheme, called 2-change, with an example
@@ -53,9 +60,9 @@ class TspProblem(SearchProblem):
 
         #Reverse the list between _x and _y (eg: 1,2,3,6,5,4,7,8,9)
         # Slicing Mechanism
-        frontList = visitorder[:_x]
-        rearList = visitorder[_y:]
-        midList = visitorder[_x:_y]
+        frontList = route[:_x]
+        rearList = route[_y:]
+        midList = route[_x:_y]
         tmp = []
 
         orderedList = frontList
@@ -64,8 +71,6 @@ class TspProblem(SearchProblem):
             orderedList.append(tmp)
         orderedList.extend(rearList)
         actions.append(('2-change at ' + str(_x) + ' and ' + str(_y), orderedList))
-
-        
 
         return actions
 
@@ -94,14 +99,21 @@ class TspProblem(SearchProblem):
 
     def value(self, s):
         ''' 
-        Hill climber wants big values. sales person wants small
+        Hill climber wants big values. Sales person wants small
         Ergo, max-tourlength.
         '''
         return calc_max - self._tour_length(s)
 
-    #FIXME!
-    def generate_random_state(self, s):
-        return 
+    def generate_random_state(self):
+        neworder = []
+        neworder.append(self.route.pop(0))i
+        last = self.route.pop(len(self.route)-1)
+        
+        for i in range(0,len(self.route)):
+            neworder.append(self.route.pop(random.randint(0,len(self.route)-1)))
+        neworder.append(last)
+        self.route = neworder
+        return self.route
 
     def _tour_length(self, s):
         # create a loop, 

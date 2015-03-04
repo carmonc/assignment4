@@ -25,44 +25,6 @@ distances = \
 #cols=len(distances[0])
 #rows=len(distances)
 
-#print '---------'
-#print 'cols = ' + str(cols)
-#print 'rows = ' + str(rows)
-
-frontList   = []
-midList     = []
-rearList    = []
-orderedList = []      
-
-p1 = 4 #random.randint(0,11)
-while True:
-    p2 = 7 #  random.randint(0,11)
-    if p2 != p1: 
-        break
-
-#Reverse the list between p1 and p2 (eg: 1,2,3,6,5,4,7,8,9)
-frontList = visitorder[:p1]
-rearList = visitorder[p2:]
-midList = visitorder[p1:p2]
-x = []
-
-print midList
-
-print frontList
-orderedList = frontList
-x = reversed(midList)
-for x in reversed(midList):
-    orderedList.append(x)
-orderedList.extend(rearList)
-print orderedList
-
-print 'randomness'
-print random.randint(0,11)
-print random.randint(0,11)
-print random.randint(0,11)
-print random.randint(0,11)
-print random.randint(0,11)
-
 print '3rd row'
 print distances[3]
 
@@ -70,3 +32,32 @@ print 'visitorder = '
 print visitorder
 print 'count = ' + str(count)
 print visitorder[count-1]
+
+total = 0
+
+for row in range(0,count-1):
+    for col in range(0,count-1):
+        item = distances[row][col] 
+        print item
+        total=total+int(item)
+
+print total
+
+print distances[11][10]
+
+
+for t in range(0,5):
+    neworder = []
+    alist = [0,1,2,3,4,5,6,7,8,9,0]
+
+    print alist
+
+    neworder.append(alist.pop(0))
+    last = alist.pop(len(alist)-1)
+    for i in range(0,len(alist)):
+        neworder.append(alist.pop(random.randint(0,len(alist)-1)))
+        #item = alist.pop(random.randint(1,len(alist)-1))
+    
+    neworder.append(last)
+    print neworder
+    print '----------------'
