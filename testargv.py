@@ -3,10 +3,13 @@ import random
 
 program_name = sys.argv[0]
 visitorder = sys.argv[1:]
-count = len(visitorder)
+visitcount = len(visitorder)
 
-print count
-for visit in visitorder:
+print 'visit order is as follows:'
+
+#for visit in visitorder:
+
+for visit in range(0,len(visitorder)-1):
     print visit
 distances = \
      [[  0,5472,5092,5393,5416,4584,4905,3852,4477,5261,4843,5930], \
@@ -25,32 +28,62 @@ distances = \
 #cols=len(distances[0])
 #rows=len(distances)
 
-print '3rd row'
-print distances[3]
+#print '3rd row contents are: ' + str(distances[3]) + '\n\n'
 
-print 'visitorder = '
-print visitorder
-print 'count = ' + str(count)
-print visitorder[count-1]
+#print 'visitorder = ' + str(visitorder) + '\n\n'
+#print 'The number of elements in the visit order  = ' + str(visitcount) + '\n\n'
+
+# *********************************************************
+# *********************************************************
+# *********************************************************
+
+# Compute tour length and tour length only
+# visitorder = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '0']
+print 'tour values = ' + str(visitorder)
+tourlen = 0
+for item in range(0,visitcount-1):
+    lhs_idx = visitorder[item]
+    rhs_idx = visitorder[item+1]
+    print 'Checking distances[ + ' + lhs_idx + '][' + rhs_idx + ']...= value( ' + str(distances[int(lhs_idx)][int(rhs_idx)]) + ')'
+    tourlen = tourlen + distances[int(lhs_idx)][int(rhs_idx)]
+
+print 'tourlen = ' + str(tourlen) + '\n\n'
+
+
+# *********************************************************
+# *********************************************************
+# *********************************************************
 
 total = 0
 
-for row in range(0,count-1):
-    for col in range(0,count-1):
+print 'Calculating total distance...\n\n'
+
+print 'distances length = ' + str(len(distances))
+print 'distances length[0] = ' + str(len(distances[0]))
+
+for row in range(0,visitcount-1):
+    for col in range(0,visitcount-1):
+        #print 'Checking [' + str(row) + '][' + str(col) + ']'
         item = distances[row][col] 
-        print item
+        # print item
         total=total+int(item)
 
-print total
+print 'Total Distances of entire grid = ' + str(total) + '\n\n'
 
-print distances[11][10]
+print 'distances[11][10] = ' + str(distances[11][10]) + '\n\n'
 
+# *********************************************************
+# *********************************************************
+# *********************************************************
 
+print 'Randomizing new list.'
+print '---------------------'
 for t in range(0,5):
     neworder = []
-    alist = [0,1,2,3,4,5,6,7,8,9,0]
+#    alist = [0,1,2,3,4,5,6,7,8,9,0]
+    alist = visitorder[:]
 
-    print alist
+    print 'alist      = ' + str(alist)
 
     neworder.append(alist.pop(0))
     last = alist.pop(len(alist)-1)
@@ -59,5 +92,81 @@ for t in range(0,5):
         #item = alist.pop(random.randint(1,len(alist)-1))
     
     neworder.append(last)
-    print neworder
-    print '----------------'
+
+    print 'neworder   = ' + str(neworder)
+    print 'visitorder = ' + str(visitorder)
+    print 'alist      = ' + str(alist)
+    print '*****************'
+
+# *********************************************************
+# *********************************************************
+# *********************************************************
+
+
+print '\n\n\'is_valid\' testing'
+print '-------------------'
+
+print 'visitorder = ' + str(visitorder)
+#if visitorder[0] == visitorder[len(visitorder)-1]:
+endpoints_same = visitorder[0] == visitorder[-1]
+
+if endpoints_same:
+    print '\n\n\nEnd points are same same. Continue.\n\n\n '
+
+    # Create a new clean sublist.
+    # Make it the range between the endpoints.
+    sublist = []
+    sublist = visitorder[1:len(visitorder)-1]
+    
+    result = True
+    print sublist
+
+    # Ensure the entries within the sublist are unique
+    length = len(sublist)
+    for idx in range(0,length):
+        item2chk = sublist[idx]
+        if sublist.count(item2chk) > 1:
+            print 'item2chk (' + str(item2chk) + ') listed multiple times!!!'
+            result = False
+            break
+        else:
+            print 'item2chk (' + str(item2chk) + ') is unique.'
+    
+    if result == False:
+        print '''The mechanism failed.'''
+
+print 'Return value = ' + str(endpoints_same and result)
+
+#    for idx in range(0,length):
+#        item2chk = sublist.pop(0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
